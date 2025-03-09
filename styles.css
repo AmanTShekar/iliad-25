@@ -183,7 +183,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 3vw
+    padding: 28px 3vw;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     z-index: 1100;
