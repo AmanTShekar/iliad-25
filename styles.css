@@ -276,6 +276,26 @@ body {
     transform: translateY(-8px) rotate(-45deg);
 }
 
+
+/* Logo */
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 40px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    
+    height: 150%;
+    width: auto;
+    filter: brightness(0) invert(1);
+    margin-top: 5px;
+
+}
+
 /* ================================= */
 /* 🔹 UNLEASH YOUR CREATIVITY SECTION */
 /* ================================= */
@@ -721,6 +741,14 @@ body.popup-open {
     color: white;
     padding: 60px 20px;
     text-align: center;
+    position: relative; /* For positioning the logo */
+}
+
+.contact-logo {
+    width: 265px;
+    height: 200%;
+    margin: 0 auto 40px;
+    filter: brightness(0) invert(1);
 }
 
 .contact-title {
