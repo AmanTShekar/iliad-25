@@ -21,11 +21,9 @@ body {
     scroll-behavior: smooth;
 }
 
-
 /* ================================= */
-/* 🔹 RANDOM*/
+/* 🔹 Image Selection Animation */
 /* ================================= */
-
 .image-selection-container {
     position: absolute;
     top: 0;
@@ -46,7 +44,7 @@ body {
     height: auto;
     margin: 1vw;
     opacity: 0; /* Hidden initially */
-    transition: opacity .1s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
 }
 
 /* Full-screen background image for "Coming Soon" */
@@ -690,6 +688,28 @@ body.popup-open {
         font-size: 14px; /* Smaller font size for mobile */
         padding: 10px 20px; /* Adjust padding */
         bottom: 20px; /* Adjust position */
+    }
+}
+
+/* ================================= */
+/* 🔹 Media Queries for Mobile Screens */
+/* ================================= */
+@media (max-width: 768px) {
+    /* Adjust image size for mobile */
+    .flowing-img {
+        width: 40vw; /* Larger size for mobile */
+        margin: 2vw; /* Adjust margin */
+    }
+
+    /* Adjust description font size for mobile */
+    .image-description {
+        font-size: 0.9rem; /* Smaller font size for mobile */
+        bottom: 10px; /* Adjust position */
+    }
+
+    /* Adjust background image opacity for mobile */
+    .selected-image-bg {
+        opacity: 0.6; /* Slightly more visible on mobile */
     }
 }
 
