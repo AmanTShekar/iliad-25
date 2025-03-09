@@ -177,7 +177,7 @@ body {
 
 .navbar {
     position: fixed;
-    top: 26px;
+    top: 0px;
     left: 0;
     width: 100%;
     display: flex;
@@ -192,7 +192,7 @@ body {
 /* 🔹 BURGER MENU - Frosted Glass Effect */
 .nav-menu {
     position: fixed;
-    top: 0px;
+    top: 26px;
     left: -100%;
     width: 280px;
     height: 100vh;
