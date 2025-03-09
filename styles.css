@@ -1,0 +1,696 @@
+/* 🔹 Full Page Background */
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    background: black;
+}
+
+/* ================================= */
+/* 🔹 GENERAL STYLES */
+/* ================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+
+/* ================================= */
+/* 🔹 RANDOM*/
+/* ================================= */
+
+.image-selection-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 5; /* Above other content */
+}
+
+/* Individual images */
+.flowing-img {
+    width: 17vw; /* Adjust size as needed */
+    height: auto;
+    margin: 1vw;
+    opacity: 0; /* Hidden initially */
+    transition: opacity .1s ease-in-out;
+}
+
+/* Full-screen background image for "Coming Soon" */
+.selected-image-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Set to 80% */
+    z-index: -1; /* Keep it behind the content */
+    transition: opacity 2s ease-in-out;
+}
+
+
+/* Background transition */
+.coming-soon {
+    position: relative;
+    background: black;
+    transition: background-image 2s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+
+
+/* 🔹 Bubble/Pill Description */
+.image-description {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 50px;
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 9999;
+}
+
+/* 🔹 Show description when the background is set */
+.bg-description.show {
+    opacity: 1;
+}
+
+/* 🔹 Ensure navigation items are visible on load */
+.nav-menu {
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out, left 0.5s ease-in-out;
+}
+
+/* 🔹 Keep items visible when menu is active */
+.nav-menu.active {
+    opacity: 1;
+    left: 0;
+}
+
+
+
+/* ================================= */
+/* 🔹 COMING SOON SECTION */
+/* ================================= */
+
+.coming-soon {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('bg.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* 🔹 ILIAD 25 Text */
+.iliad {
+    font-size: clamp(3rem, 10vw, 8rem);
+    text-transform: uppercase;
+    color: white;
+    font-weight: 700;
+}
+
+/* 🔹 Liquid Text Effect */
+.liquid-text {
+    font-size: clamp(2rem, 5vw, 5rem);
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.coming-soon::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20vh; /* Adjust the height of the gradient */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 100%);
+}
+
+.september {
+    /* Copy the same styles as .iliad */
+    font-family: inherit;
+    font-weight: inherit;
+    text-transform: inherit;
+    text-align: inherit;
+
+    display: none;  /* Completely hidden initially */
+    visibility: hidden; /* Ensures it's not visible at all */
+    opacity: 0; /* Double-check it's not showing */
+}
+
+
+
+
+
+
+
+
+
+/* ================================= */
+/* 🔹 NAVIGATION MENU */
+/* ================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 3vw;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1100;
+}
+
+/* 🔹 BURGER MENU - Frosted Glass Effect */
+.nav-menu {
+    position: fixed;
+    top: 0px;
+    left: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(15, 15, 15, 0.3); /* More transparent */
+    backdrop-filter: blur(4px) saturate(180%); /* Strong frosted glass effect */
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    transition: left 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    z-index: 1000;
+}
+
+
+/* 🔹 Bring menu into view when active */
+.nav-menu.active {
+    left: 0;
+}
+
+/* 🔹 NAVIGATION ITEMS - Box & Gradient Hover */
+.nav-item {
+    width: 90%;
+    text-align: center;
+    padding: 14px 0;
+    font-size: .9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* 🔹 Thin white line separator */
+.nav-item:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 🔹 Gradient Fill on Hover */
+.nav-item:hover {
+    background: linear-gradient(90deg, #0f9d58, #1de9b6);
+    color: black;
+    text-shadow: 0 0 10px rgba(15, 157, 88, 0.8);
+}
+
+
+
+/* ================================= */
+/* 🔹 BURGER MENU */
+/* ================================= */
+
+.burger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    z-index: 9999; /* Ensure visibility above menu */
+}
+
+.burger div {
+    width: 30px;
+    height: 3px;
+    background: white;
+    transition: 0.3s ease-in-out;
+}
+
+/* 🔹 Change burger to "X" when active */
+.burger.active div:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active div:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ================================= */
+/* 🔹 UNLEASH YOUR CREATIVITY SECTION */
+/* ================================= */
+
+/* 🔹 Adjusting Unleash Your Creativity Section */
+
+.creativity-section {
+    height: 100vh;
+    background: linear-gradient(to bottom, black, #0f9d58);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.creativity-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30vh; /* Adjust the height of the fade effect */
+    background: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0) 100%);
+    pointer-events: none; /* Ensures it doesn’t interfere with interactions */
+}
+
+
+/* Reveal effect when scrolled */
+.creativity-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 🔹 "Unleash Your Creativity" Title */
+.creativity-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #0f9d58, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 🔹 Quote & Description */
+.creativity-quote,
+.creativity-description {
+    font-size: 1.5rem;
+    max-width: 900px;
+    line-height: 1.5;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+/* Reveal on scroll */
+.creativity-section.show .creativity-quote,
+.creativity-section.show .creativity-description {
+    opacity: 1;
+}
+
+/* 🔹 Explore Button */
+.creativity-btn {
+    margin-top: 30px;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background: transparent;
+    border: 2px solid #0f9d58;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.creativity-btn:hover {
+    background: #0f9d58;
+}
+
+/* Smooth transition when scrolling into view */
+.creativity-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Reveal smoothly */
+.creativity-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered text animation */
+.creativity-title, .creativity-quote, .creativity-description {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.creativity-section.show .creativity-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.creativity-section.show .creativity-quote {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.creativity-section.show .creativity-description {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+
+
+
+
+
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* ================================= */
+/* 🔹 ANIMATIONS */
+/* ================================= */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+
+
+/* ================================= */
+/* 🔹 Disable Scrolling When Popup is Open */
+/* ================================= */
+body.popup-open {
+    overflow: hidden;
+}
+
+/* ================================= */
+/* 🔹 Registration Popup */
+/* ================================= */
+.registration-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55vw; /* Increased width */
+    max-width: 650px;
+    background: rgba(50, 50, 50, 0.5); /* Smoked grey with slight transparency */
+    backdrop-filter: blur(15px); /* Frosted glass effect */
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    overflow-y: auto; /* Enable scrolling inside the popup */
+    max-height: 90vh; /* Limit height to 90% of viewport */
+}
+
+/* Popup Title */
+.registration-popup h2 {
+    font-size: 22px;
+    font-weight: 400; /* Reduced font weight */
+    color: white;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* Close Button */
+.close-btn {
+    font-size: 32px; /* Increased size */
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #ff4d4d; /* Red color on hover */
+}
+
+/* ================================= */
+/* 🔹 Tabs (Individual & Group) */
+/* ================================= */
+.registration-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.1); /* Always visible box */
+    border: 2px solid white; /* Keeps the box visible */
+    padding: 8px 18px;
+    font-size: 16px;
+    font-weight: 400; /* Reduced font weight */
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    border-radius: 6px;
+}
+
+.tab-btn.active {
+    background: #228B22; /* Solid green */
+    color: rgb(0, 0, 0);
+}
+
+.tab-btn:not(.active) {
+    color: rgb(255, 255, 255);
+}
+
+/* ================================= */
+/* 🔹 Forms */
+/* ================================= */
+.registration-form {
+    display: none;
+}
+
+.registration-form.active {
+    display: block;
+}
+
+.registration-form input,
+.registration-form select {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border: 2px solid rgba(255, 255, 255, 0.4); /* Soft white border */
+    border-radius: 6px;
+    color: white; /* White text inside boxes */
+    font-weight: 500;
+}
+
+/* Placeholder Text Color */
+.registration-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Light white for readability */
+}
+
+/* Dropdown Styling */
+.registration-form select {
+    appearance: none;
+    cursor: pointer;
+}
+
+/* Dropdown Options */
+.registration-form select option {
+    color: black; /* Black text inside dropdown */
+    background: white; /* White background */
+}
+
+/* Submit Button */
+.registration-form button {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #228B22; /* Solid green */
+    color: white;
+    transition: 0.3s;
+    line-height: 2;
+    display: block;
+    margin: 20px auto 0;
+    text-align: center;
+}
+
+.registration-form button:hover {
+    background: #006400; /* Darker green on hover */
+}
+
+/* ================================= */
+/* 🔹 Scrollable Team Members Section */
+/* ================================= */
+#team-member-names {
+    max-height: 200px; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-bottom: 15px;
+    padding-right: 10px; /* Add padding to avoid overlap with scrollbar */
+}
+
+/* Custom Scrollbar Styling */
+#team-member-names::-webkit-scrollbar {
+    width: 8px;
+}
+
+#team-member-names::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); /* Light track */
+    border-radius: 4px;
+}
+
+#team-member-names::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4); /* Scrollbar handle */
+    border-radius: 4px;
+}
+
+#team-member-names::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.6); /* Handle on hover */
+}
+
+/* ================================= */
+/* 🔹 Success Popup */
+/* ================================= */
+.success-popup {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 128, 0, 0.9); /* Green with slight transparency */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px; /* Pill shape */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999999; /* Ensure it's above the registration popup */
+}
+
+
+/* ================================= */
+/* 🔹 Media Queries for Mobile Screens */
+/* ================================= */
+@media (max-width: 768px) {
+    /* ================================= */
+    /* 🔹 UNLEASH YOUR CREATIVITY SECTION */
+    /* ================================= */
+    .creativity-section {
+        padding: 20px; /* Add padding for better spacing */
+    }
+
+    .creativity-title {
+        font-size: 2.5rem; /* Smaller font size for mobile */
+    }
+
+    .creativity-quote,
+    .creativity-description {
+        font-size: 1.2rem; /* Smaller font size for mobile */
+        max-width: 90%; /* Adjust width for mobile */
+    }
+
+    .creativity-btn {
+        font-size: 1rem; /* Smaller font size for mobile */
+        padding: 10px 20px; /* Adjust padding */
+    }
+
+    /* ================================= */
+    /* 🔹 REGISTRATION POPUP */
+    /* ================================= */
+    .registration-popup {
+        width: 90vw; /* Full width for mobile */
+        max-width: none; /* Remove max-width */
+        padding: 20px; /* Reduce padding */
+    }
+
+    .registration-popup h2 {
+        font-size: 1.5rem; /* Smaller font size for mobile */
+    }
+
+    .registration-form input,
+    .registration-form select {
+        font-size: 14px; /* Smaller font size for mobile */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .registration-form button {
+        width: 80%; /* Wider button for mobile */
+        font-size: 14px; /* Smaller font size for mobile */
+    }
+
+    .tab-btn {
+        padding: 6px 12px; /* Adjust padding */
+        font-size: 14px; /* Smaller font size for mobile */
+    }
+
+    /* ================================= */
+    /* 🔹 SCROLLABLE TEAM MEMBERS SECTION */
+    /* ================================= */
+    #team-member-names {
+        max-height: 150px; /* Reduce height for mobile */
+    }
+
+    /* ================================= */
+    /* 🔹 SUCCESS POPUP */
+    /* ================================= */
+    .success-popup {
+        font-size: 14px; /* Smaller font size for mobile */
+        padding: 10px 20px; /* Adjust padding */
+        bottom: 20px; /* Adjust position */
+    }
+}
+
+
