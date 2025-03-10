@@ -32,6 +32,7 @@
     <div class="nav-menu">
         <div class="nav-item">Home</div>
         <div class="nav-item">About</div>
+        <div class="nav-item">Projects</div>
         <div class="nav-item">Contact</div>
     </div>
     
@@ -41,7 +42,7 @@
     <!-- ================================= -->
     <section class="coming-soon">
         <div class="iliad-container">
-            <h1 class="iliad">ILIAD'25</h1>
+            <h1 class="iliad">ILIAD 25</h1>
             <h2 class="september">MARCH</h2>
         </div>   
     </section>
@@ -61,128 +62,21 @@
         shaping cultures, movements, and identities.
     </p>
 
-    <button class="creativity-btn">REGISTER</button>
+    <button class="creativity-btn" id="registerBtn">REGISTER</button>
 </section>
 
 <!-- ================================ -->
 <!-- 🔹 Registration Popup -->
 <!-- ================================ -->
-<div class="registration-popup">
-    <div class="popup-content">
-        <span class="close-btn">&times;</span>
-        
-        <h2>Register Now</h2>
-
-        <!-- Tab Buttons -->
-        <div class="registration-tabs">
-            <button class="tab-btn active" data-tab="individual">Individual</button>
-            <button class="tab-btn" data-tab="group">Group</button>
-        </div>
-
-<!-- Individual Registration Form -->
-<form id="individual-form" class="registration-form active">
-    <input type="email" id="ind-email" placeholder="Your Email" required>
-    <input type="text" id="ind-name" placeholder="Your Name" required>
-    
-    <select id="ind-semester" required>
-        <option value="" disabled selected>Select Semester</option>
-        <option value="S2">S2</option>
-        <option value="S4">S4</option>
-        <option value="S6">S6</option>
-        <option value="S8">S8</option>
-    </select>            
-
-    <input type="text" id="ind-reg-no" placeholder="Contact No." required>
-    
-    <select id="ind-event" required>
-        <option value="" disabled selected>Select Event</option>
-        <option value="Stand up comedy">Stand up comedy</option>
-        <option value="Western dance (solo)">Western dance (solo)</option>
-        <option value="Ramp walk">Ramp walk</option>
-        <option value="Mohiniyattam">Mohiniyattam</option>
-        <option value="Kuchipudi">Kuchipudi</option>
-        <option value="Bharatanatyam">Bharatanatyam</option>
-        <option value="Nadodi Nritham">Nadodi Nritham</option>
-        <option value="Spot coreo">Spot coreo</option>
-        <option value="Western song">Western song</option>
-        <option value="Light music">Light music</option>
-        <option value="Eastern instruments">Eastern instruments</option>
-        <option value="Western instruments">Western instruments</option>
-        <option value="Ad-zap">Ad-zap</option>
-        <option value="Mimicry">Mimicry</option>
-        <option value="Classical music">Classical music</option>
-        <option value="Mappilappatu">Mappilappatu</option>
-        <option value="Monoact">Monoact</option>
-        <option value="Semi-Classical">Semi-Classical</option>
-    </select>
-    <button type="submit">Submit</button>
-</form>
-
-<!-- Group Registration Form -->
-<form id="group-form" class="registration-form">
-    <input type="email" id="grp-email" placeholder="Team Captain Email" required>
-    <input type="text" id="grp-captain" placeholder="Team Captain Name" required>
-
-    <select id="grp-semester" required>
-        <option value="" disabled selected>Select Semester</option>
-        <option value="S2">S2</option>
-        <option value="S4">S4</option>
-        <option value="S6">S6</option>
-        <option value="S8">S8</option>
-    </select>
-
-    <input type="text" id="grp-reg-no" placeholder="Contact No." required>
-    
-    <select id="grp-members" required>
-        <option value="" disabled selected>Number of Members</option>
-        <option value="2">2 Members</option>
-        <option value="3">3 Members</option>
-        <option value="4">4 Members</option>
-        <option value="5">5 Members</option>
-        <option value="6">6 Members</option>
-        <option value="7">7 Members</option>
-        <option value="8">8 Members</option>
-        <option value="9">9 Members</option>
-        <option value="10">10 Members</option>
-        <option value="11">11 Members</option>
-        <option value="12">12 Members</option>
-        <option value="13">13 Members</option>
-        <option value="14">14 Members</option>
-        <option value="15">15 Members</option>
-         <option value="16">16 Members</option>
-    </select>
-
-    <div id="team-member-names"></div>
-
-    <select id="grp-event" required>
-        <option value="" disabled selected>Select Event</option>
-        <option value="Battle of bands">Battle of bands</option>
-        <option value="Rangoli">Rangoli</option>
-        <option value="Western dance (group)">Western dance (group)</option>
-        <option value="Thiruvathira">Thiruvathira</option>
-        <option value="Vattappattu">Vattappattu</option>
-        <option value="Step and synchro">Step and synchro</option>
-        <option value="Nostalgia">Nostalgia</option>
-        <option value="Group dance">Group dance</option>
-        <option value="Semi classical">Semi classical</option>
-        <option value="Mime">Mime</option>
-        <option value="Skit">Skit</option>
-        <option value="Couple dance">Couple dance</option>
-        <option value="Oppana">Oppana</option>
-        <option value="Bridal makeup">Bridal makeup</option>
-        <option value="Kolkali">Kolkali</option>
-        <option value="Duff muttu">Duff muttu</option>
-        <option value="Tableau">Tableau</option>
-        <option value="Nadan pattu">Nadan pattu</option>
-        <option value="Group song">Group song</option>
-        <option value="Patriotic song">Patriotic song</option>
-    </select>
-    <button type="submit">Submit</button>
-</form>
-
-
+<div class="registration-popup" id="registrationPopup">
+    <div class="popup-content" id="popupContent">
+        <span class="close-btn" id="closePopup">&times;</span>
+        <h2 id="popupTitle">Register Now</h2>
+        <p id="popupMessage">Thank you for your interest, but registrations are now closed.</p>
     </div>
 </div>
+
+
 
 
 
@@ -215,7 +109,6 @@
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 
 
 
