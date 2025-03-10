@@ -236,221 +236,50 @@ setTimeout(() => {
 
 
 
-
-
     /* ================================= */
-    /* 🔹 REGISTRATION POPUP */
+    /* 🔹 REGISTRATION CLOSED POPUP */
     /* ================================= */
-    
-        // Selecting elements
-        const registerBtn = document.querySelector(".creativity-btn"); // REGISTER button
-        const popup = document.querySelector(".registration-popup"); // Popup container
-        const closeBtn = document.querySelector(".close-btn"); // Close button
-        const tabButtons = document.querySelectorAll(".tab-btn"); // Tab buttons
-        const forms = document.querySelectorAll(".registration-form"); // All forms
-        const teamSizeDropdown = document.getElementById("grp-members"); // Group size dropdown
-        const teamMemberContainer = document.getElementById("team-member-names"); // Dynamic input area
-    
-        // Ensure popup is hidden initially
-        popup.style.display = "none";
+    const registerBtn = document.getElementById("registerBtn"); // REGISTER button
+    const popup = document.getElementById("registrationPopup"); // Popup container
+    const popupTitle = document.getElementById("popupTitle"); // Title inside popup
+    const popupMessage = document.getElementById("popupMessage"); // Message inside popup
+    const closeBtn = document.getElementById("closePopup"); // Close button
+
+    // Initially hide popup
+    popup.style.display = "none";
+    popup.style.opacity = "0";
+
+    // Show "Registration Closed" popup when REGISTER is clicked
+    registerBtn.addEventListener("click", function () {
+        popupTitle.textContent = "Registration Closed";
+        popupMessage.textContent = "Thank you for your interest, but registrations are now closed.";
+
+        popup.style.display = "flex";
+        document.body.classList.add("noscroll");
+        setTimeout(() => {
+            popup.style.opacity = "1";
+        }, 10);
+    });
+
+    // Close popup when close button is clicked
+    closeBtn.addEventListener("click", function () {
         popup.style.opacity = "0";
-    
-        // ================================
-        // 🔹 POPUP FUNCTIONALITY
-        // ================================
-    
-        // Open popup when REGISTER button is clicked
-        registerBtn.addEventListener("click", function () {
-            console.log("REGISTER button clicked!"); // Debugging log
-            popup.style.display = "flex"; // Show popup
-            document.body.classList.add("noscroll"); // Disable background scrolling
+        setTimeout(() => {
+            popup.style.display = "none";
+            document.body.classList.remove("noscroll");
+        }, 300);
+    });
+
+    // Close popup when clicking outside content
+    popup.addEventListener("click", function (e) {
+        if (e.target === popup) {
+            popup.style.opacity = "0";
             setTimeout(() => {
-                popup.style.opacity = "1"; // Smooth fade-in
-            }, 10);
-        });
-    
-        // Close popup when close button is clicked
-        closeBtn.addEventListener("click", function () {
-            console.log("Close button clicked!"); // Debugging log
-            popup.style.opacity = "0"; // Smooth fade-out
-            setTimeout(() => {
-                popup.style.display = "none"; // Hide completely
-                document.body.classList.remove("noscroll"); // Re-enable scrolling
+                popup.style.display = "none";
+                document.body.classList.remove("noscroll");
             }, 300);
-        });
-    
-        // Close popup when clicking outside content
-        popup.addEventListener("click", function (e) {
-            if (e.target === popup) {
-                console.log("Clicked outside popup!"); // Debugging log
-                popup.style.opacity = "0";
-                setTimeout(() => {
-                    popup.style.display = "none";
-                    document.body.classList.remove("noscroll"); // Re-enable scrolling
-                }, 300);
-            }
-        });
-    
-        // ================================
-        // 🔹 TAB SWITCHING (Individual / Group)
-        // ================================
-    
-        tabButtons.forEach((button) => {
-            button.addEventListener("click", function () {
-                console.log("Tab clicked:", this.dataset.tab); // Debugging log
-    
-                // Remove 'active' class from all buttons & forms
-                tabButtons.forEach((btn) => btn.classList.remove("active"));
-                forms.forEach((form) => form.classList.remove("active"));
-    
-                // Add 'active' class to selected tab & corresponding form
-                this.classList.add("active");
-                document.getElementById(this.dataset.tab + "-form").classList.add("active");
-            });
-        });
-    
-    // ================================
-    // 🔹 DYNAMIC TEAM MEMBER INPUT FIELDS
-    // ================================
-
-    teamSizeDropdown.addEventListener("change", function () {
-        teamMemberContainer.innerHTML = ""; // Clear previous inputs
-        let teamSize = parseInt(this.value);
-
-        // Generate input fields for team members (excluding the captain)
-        for (let i = 1; i <= teamSize - 1; i++) {
-            let input = document.createElement("input");
-            input.type = "text";
-            input.placeholder = `Member ${i + 1} Name`;
-            input.required = true;
-            teamMemberContainer.appendChild(input);
         }
     });
 
-    /* ================================= */
-    /* 🔹 INDIVIDUAL FORM SUBMISSION */
-    /* ================================= */
-    document.getElementById("individual-form").addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent page refresh
 
-        // Get form values
-        let email = document.getElementById("ind-email").value.trim();
-        let name = document.getElementById("ind-name").value.trim();
-        let semester = document.getElementById("ind-semester").value;
-        let regNo = document.getElementById("ind-reg-no").value.trim();
-        let event = document.getElementById("ind-event").value;
-        let registrationType = "Individual"; // Set registration type
-
-        // Debugging: Log form data
-        console.log("Individual Form Data:", { email, name, semester, regNo, event });
-
-        // Validation
-        if (!email || !name || !semester || !regNo || !event) {
-            alert("Please fill in all the fields before submitting.");
-            return;
-        }
-
-        // Construct form submission URL
-        let formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeUseeip_fnrMfLhgvX_zymcoPQXRIZQV1djBQc32uEYPZXMw/formResponse";
-        let formData = new URLSearchParams();
-        formData.append("entry.1914124860", registrationType); // Registration Type (Individual/Group)
-        formData.append("entry.168660119", email); // Email
-        formData.append("entry.398821280", name); // Name
-        formData.append("entry.971774167", semester); // Semester
-        formData.append("entry.1040612207", regNo); // Registration Number
-        formData.append("entry.2005226383", event); // Event
-
-        // Add hidden fields (required by Google Forms)
-        formData.append("fvv", "1"); // Form validation field
-        formData.append("pageHistory", "0,1"); // Page history
-        formData.append("fbzx", "260048997951348665"); // Form ID
-        formData.append("submissionTimestamp", Date.now()); // Timestamp
-
-        // Submit using fetch()
-        fetch(formUrl, {
-            method: "POST",
-            body: formData,
-            mode: "no-cors", // Required for Google Forms
-        })
-            .then(() => {
-                showSuccessPopup("Individual Registration Submitted Successfully!");
-                this.reset(); // Reset the form
-            })
-            .catch((error) => console.error("Form submission failed:", error));
-    });
-
-        /* ================================= */
-        /* 🔹 GROUP FORM SUBMISSION */
-        /* ================================= */
-        document.getElementById("group-form")?.addEventListener("submit", function (e) {
-            e.preventDefault(); // Prevent page refresh
-    
-            // Get form values
-            let email = document.getElementById("grp-email")?.value.trim();
-            let captainName = document.getElementById("grp-captain")?.value.trim();
-            let semester = document.getElementById("grp-semester")?.value;
-            let regNo = document.getElementById("grp-reg-no")?.value.trim();
-            let event = document.getElementById("grp-event")?.value;
-            let memberNames = [];
-    
-            document.querySelectorAll("#team-member-names input")?.forEach((input) => {
-                memberNames.push(input.value.trim());
-            });
-    
-            let formattedMembers = memberNames.join(", ");
-            let registrationType = "Group"; // Set registration type
-    
-            // Debugging: Log form data
-            console.log("Group Form Data:", { email, captainName, semester, regNo, event, formattedMembers });
-    
-            // Validation
-            if (!email || !captainName || !semester || !regNo || !event || memberNames.includes("")) {
-                alert("Please fill in all fields for Group registration.");
-                return;
-            }
-    
-            // Construct form submission URL
-            let formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeUseeip_fnrMfLhgvX_zymcoPQXRIZQV1djBQc32uEYPZXMw/formResponse";
-            let formData = new URLSearchParams();
-            formData.append("entry.1914124860", registrationType); // Registration Type (Individual/Group)
-            formData.append("entry.1708180751", email); // Email
-            formData.append("entry.1617909421", captainName); // Captain Name
-            formData.append("entry.1674322260", semester); // Semester
-            formData.append("entry.2010438367", regNo); // Registration Number
-            formData.append("entry.145799555", formattedMembers); // Team Members
-            formData.append("entry.2035909927", event); // Event
-    
-            // Add hidden fields (required by Google Forms)
-            formData.append("fvv", "1"); // Form validation field
-            formData.append("pageHistory", "0,2"); // Page history
-            formData.append("fbzx", "-1011684048657098874"); // Form ID
-            formData.append("submissionTimestamp", Date.now()); // Timestamp
-    
-            // Submit using fetch()
-            fetch(formUrl, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors", // Required for Google Forms
-            })
-                .then(() => {
-                    showSuccessPopup("Group Registration Submitted Successfully!");
-                    this.reset(); // Reset the form
-                })
-                .catch((error) => console.error("Form submission failed:", error));
-        });
-    
-        /* ================================= */
-        /* 🔹 SUCCESS POPUP FUNCTION */
-        /* ================================= */
-        function showSuccessPopup(message) {
-            let successPopup = document.createElement("div");
-            successPopup.innerText = `✔ ${message}`;
-            successPopup.className = "success-popup";
-            document.body.appendChild(successPopup);
-    
-            setTimeout(() => {
-                successPopup.style.opacity = "0";
-                setTimeout(() => document.body.removeChild(successPopup), 500);
-            }, 3000);
-        }
-    });
+});
