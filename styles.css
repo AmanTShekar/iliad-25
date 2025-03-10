@@ -177,13 +177,13 @@ body {
 
 .navbar {
     position: fixed;
-    top: 0px;
+    top: 0;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 3vw;
+    padding: 30px 3vw;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     z-index: 1100;
@@ -192,7 +192,7 @@ body {
 /* 🔹 BURGER MENU - Frosted Glass Effect */
 .nav-menu {
     position: fixed;
-    top: 26px;
+    top: 0px;
     left: -100%;
     width: 280px;
     height: 100vh;
@@ -275,7 +275,6 @@ body {
 .burger.active div:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
-
 
 /* Logo */
 .logo {
@@ -437,301 +436,59 @@ body {
 
 
 
-/* ================================= */
-/* 🔹 Disable Scrolling When Popup is Open */
-/* ================================= */
-body.popup-open {
-    overflow: hidden;
-}
+
+
+
 
 /* ================================= */
-/* 🔹 Registration Popup */
+/* 🔹 REGISTRATION POPUP STYLING */
 /* ================================= */
 .registration-popup {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 55vw; /* Increased width */
-    max-width: 650px;
-    background: rgba(50, 50, 50, 0.5); /* Smoked grey with slight transparency */
-    backdrop-filter: blur(15px); /* Frosted glass effect */
-    border-radius: 12px;
-    padding: 35px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1001;
-    overflow-y: auto; /* Enable scrolling inside the popup */
-    max-height: 90vh; /* Limit height to 90% of viewport */
-}
-
-/* Popup Title */
-.registration-popup h2 {
-    font-size: 22px;
-    font-weight: 400; /* Reduced font weight */
-    color: white;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    line-height: 1.4;
-    text-align: center;
-}
-
-/* Close Button */
-.close-btn {
-    font-size: 32px; /* Increased size */
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: none;
-    border: none;
-    transition: color 0.3s;
-}
-
-.close-btn:hover {
-    color: #ff4d4d; /* Red color on hover */
-}
-
-/* ================================= */
-/* 🔹 Tabs (Individual & Group) */
-/* ================================= */
-.registration-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.tab-btn {
-    background: rgba(255, 255, 255, 0.1); /* Always visible box */
-    border: 2px solid white; /* Keeps the box visible */
-    padding: 8px 18px;
-    font-size: 16px;
-    font-weight: 400; /* Reduced font weight */
-    cursor: pointer;
-    transition: 0.3s;
-    color: white;
-    border-radius: 6px;
-}
-
-.tab-btn.active {
-    background: #228B22; /* Solid green */
-    color: rgb(0, 0, 0);
-}
-
-.tab-btn:not(.active) {
-    color: rgb(255, 255, 255);
-}
-
-/* ================================= */
-/* 🔹 Forms */
-/* ================================= */
-.registration-form {
-    display: none;
-}
-
-.registration-form.active {
-    display: block;
-}
-
-.registration-form input,
-.registration-form select {
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 12px;
-    margin: 15px 0;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-    border: 2px solid rgba(255, 255, 255, 0.4); /* Soft white border */
-    border-radius: 6px;
-    color: white; /* White text inside boxes */
-    font-weight: 500;
-}
-
-/* Placeholder Text Color */
-.registration-form input::placeholder {
-    color: rgba(255, 255, 255, 0.7); /* Light white for readability */
-}
-
-/* Dropdown Styling */
-.registration-form select {
-    appearance: none;
-    cursor: pointer;
-}
-
-/* Dropdown Options */
-.registration-form select option {
-    color: black; /* Black text inside dropdown */
-    background: white; /* White background */
-}
-
-/* Submit Button */
-.registration-form button {
-    width: 60%;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background: #228B22; /* Solid green */
-    color: white;
-    transition: 0.3s;
-    line-height: 2;
-    display: block;
-    margin: 20px auto 0;
-    text-align: center;
-}
-
-.registration-form button:hover {
-    background: #006400; /* Darker green on hover */
-}
-
-/* ================================= */
-/* 🔹 Scrollable Team Members Section */
-/* ================================= */
-#team-member-names {
-    max-height: 200px; /* Adjust height as needed */
-    overflow-y: auto; /* Enable vertical scrolling */
-    margin-bottom: 15px;
-    padding-right: 10px; /* Add padding to avoid overlap with scrollbar */
-}
-
-/* Custom Scrollbar Styling */
-#team-member-names::-webkit-scrollbar {
-    width: 8px;
-}
-
-#team-member-names::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1); /* Light track */
-    border-radius: 4px;
-}
-
-#team-member-names::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.4); /* Scrollbar handle */
-    border-radius: 4px;
-}
-
-#team-member-names::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.6); /* Handle on hover */
-}
-
-/* ================================= */
-/* 🔹 Success Popup */
-/* ================================= */
-.success-popup {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 128, 0, 0.9); /* Green with slight transparency */
-    color: white;
-    padding: 12px 24px;
-    border-radius: 50px; /* Pill shape */
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    opacity: 1;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
     transition: opacity 0.3s ease-in-out;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 999999; /* Ensure it's above the registration popup */
+}
+
+.popup-content {
+    background: rgba(50, 50, 50, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    width: 300px;
+    position: relative;
+}
+
+.popup-content h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    font-size: 16px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+.noscroll {
+    overflow: hidden;
 }
 
 
-/* ================================= */
-/* 🔹 Media Queries for Mobile Screens */
-/* ================================= */
-@media (max-width: 768px) {
-    /* ================================= */
-    /* 🔹 UNLEASH YOUR CREATIVITY SECTION */
-    /* ================================= */
-    .creativity-section {
-        padding: 20px; /* Add padding for better spacing */
-    }
-
-    .creativity-title {
-        font-size: 2.5rem; /* Smaller font size for mobile */
-    }
-
-    .creativity-quote,
-    .creativity-description {
-        font-size: 1.2rem; /* Smaller font size for mobile */
-        max-width: 90%; /* Adjust width for mobile */
-    }
-
-    .creativity-btn {
-        font-size: 1rem; /* Smaller font size for mobile */
-        padding: 10px 20px; /* Adjust padding */
-    }
-
-    /* ================================= */
-    /* 🔹 REGISTRATION POPUP */
-    /* ================================= */
-    .registration-popup {
-        width: 90vw; /* Full width for mobile */
-        max-width: none; /* Remove max-width */
-        padding: 20px; /* Reduce padding */
-    }
-
-    .registration-popup h2 {
-        font-size: 1.5rem; /* Smaller font size for mobile */
-    }
-
-    .registration-form input,
-    .registration-form select {
-        font-size: 14px; /* Smaller font size for mobile */
-        padding: 10px; /* Reduce padding */
-    }
-
-    .registration-form button {
-        width: 80%; /* Wider button for mobile */
-        font-size: 14px; /* Smaller font size for mobile */
-    }
-
-    .tab-btn {
-        padding: 6px 12px; /* Adjust padding */
-        font-size: 14px; /* Smaller font size for mobile */
-    }
-
-    /* ================================= */
-    /* 🔹 SCROLLABLE TEAM MEMBERS SECTION */
-    /* ================================= */
-    #team-member-names {
-        max-height: 150px; /* Reduce height for mobile */
-    }
-
-    /* ================================= */
-    /* 🔹 SUCCESS POPUP */
-    /* ================================= */
-    .success-popup {
-        font-size: 14px; /* Smaller font size for mobile */
-        padding: 10px 20px; /* Adjust padding */
-        bottom: 20px; /* Adjust position */
-    }
-}
-
-/* ================================= */
-/* 🔹 Media Queries for Mobile Screens */
-/* ================================= */
-@media (max-width: 768px) {
-    /* Adjust image size for mobile */
-    .flowing-img {
-        width: 40vw; /* Larger size for mobile */
-        margin: 2vw; /* Adjust margin */
-    }
-
-    /* Adjust description font size for mobile */
-    .image-description {
-        font-size: 0.9rem; /* Smaller font size for mobile */
-        bottom: 10px; /* Adjust position */
-    }
-
-    /* Adjust background image opacity for mobile */
-    .selected-image-bg {
-        opacity: 0.6; /* Slightly more visible on mobile */
-    }
-}
 
 /* ================================= */
 /* 🔹 Contact Section */
